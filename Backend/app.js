@@ -1,26 +1,31 @@
-const cookieParser = require("cookie-parser");
-const express = require("express");
-const errorMiddleware = require('./middleWare/error');
-const bodyParser = require("body-parser");
-const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
+import cookieParser from 'cookie-parser';
+import express from 'express';
+import errorMiddleware from './middleWare/error.js';
+import bodyParser from 'body-parser';
+import fileUpload from 'express-fileupload';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import authRoutes from './routes/auth.js';
+import productRoutes from './routes/productRoute.js';
+import orderRoutes from './routes/orderRoute.js';
+import paymentRoutes from './routes/paymentRoute.js';
 
-//config
-dotenv.config({ path: "backend/config/config.env" });
+// Config
+dotenv.config({ path: 'backend/config/config.env' });
 
 const app = express();
-app.use(express.json()); 
+app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 
-//Available Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/product', require("./routes/productRoute"));
-app.use('/api/order', require("./routes/orderRoute"));
-app.use("/api/payment", require("./routes/paymentRoute"));
+// Available Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/product', productRoutes);
+app.use('/api/order', orderRoutes);
+app.use('/api/payment', paymentRoutes);
 
-//middleware for Errors
+// Middleware for Errors
 app.use(errorMiddleware);
 
-module.exports = app;
+export default app;

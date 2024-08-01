@@ -1,7 +1,7 @@
-const express = require("express");
-const { processPayment, sendStripeApiKey } = require("../cantrollers/paymentCantroller");
+import express from "express";
+import { processPayment, sendStripeApiKey } from "../cantrollers/paymentCantroller.js";
 const router = express.Router();
-const { isAuthenticatedUser } = require("../middleWare/Authentication");
+import { isAuthenticatedUser } from "../middleWare/Authentication.js";
 /*Route 1:Check Authenticate user is vaild or not before payment
  using: POST "/api/payment/process" Login requried
 */
@@ -11,4 +11,4 @@ router.post("/process", isAuthenticatedUser, processPayment);
   using: GET "api/payment/stripeapikey" login required
 */
 router.get("/stripeapikey", isAuthenticatedUser, sendStripeApiKey);
-module.exports = router;
+export default router;

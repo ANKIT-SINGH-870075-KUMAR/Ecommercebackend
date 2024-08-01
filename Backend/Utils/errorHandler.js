@@ -4,12 +4,13 @@
 3.use constructor and super keywords 
 4.use error class methods :- captureStackTrace
 */ 
-class ErrorHandler extends Error{
-    constructor(message, statuscode){
+class ErrorHandler extends Error {
+  constructor(message, statuscode) {
       super(message);
-      this.statuscode = statuscode
-      Error.captureStackTrace(this,this.constructor);
-    }
+      this.statuscode = statuscode;
+
+      Error.captureStackTrace(this, this.constructor);
+  }
 }
 
-module.exports = ErrorHandler;
+export default ErrorHandler;

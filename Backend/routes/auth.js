@@ -1,6 +1,6 @@
-const express = require('express');
-const { createUser, loginUser, logoutUser, forgotPassword, resetPassword, getUserDetails, updatePassword, updateProfile, getAllUser, getSingleUser, updateUserRole, deleteUser } = require('../cantrollers/userCantroller');
-const { isAuthenticatedUser, authorizeRoles } = require("../middleWare/Authentication");
+import express from 'express';
+import { createUser, loginUser, logoutUser, forgotPassword, resetPassword, getUserDetails, updatePassword, updateProfile, getAllUser, getSingleUser, updateUserRole, deleteUser } from '../cantrollers/userCantroller.js';
+import { isAuthenticatedUser, authorizeRoles } from "../middleWare/Authentication.js";
 const router = express.Router();
 //Route1: Create a User using:  POST "/api/auth/createuser" .no login required
 router.post("/createuser",createUser);
@@ -38,4 +38,4 @@ router.put("/admin/user/:id",isAuthenticatedUser,authorizeRoles("admin"),updateU
 //Route 12: admin Delete loggedin user using: DELETE "/api/auth/admin/user/:id". login and admin required
 router.delete("/admin/user/:id",isAuthenticatedUser,authorizeRoles("admin"),deleteUser);
 
-module.exports = router;
+export default router;

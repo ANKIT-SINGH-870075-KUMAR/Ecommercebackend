@@ -1,10 +1,10 @@
-const ErrorHandler = require('../Utils/errorHandler');
+import ErrorHandler from '../Utils/errorHandler.js';
 
-module.exports = (err, req, res, next) => {
+const errorMiddleware = (err, req, res, next) => {
     err.statuscode = err.statuscode || 500;
-    err.message = err.message || 'internal Server error';
+    err.message = err.message || 'Internal Server Error';
 
-    // Wrong Mongodb Id Error(cast error)
+    // Wrong Mongodb Id Error (cast error)
     if (err.name === "CastError") {
         const message = `Resource not found. Invalid: ${err.path}`;
         err = new ErrorHandler(message, 400);
@@ -30,3 +30,5 @@ module.exports = (err, req, res, next) => {
 
     res.status(err.statuscode).json({ success: false, message: err.message });
 };
+
+export default errorMiddleware;

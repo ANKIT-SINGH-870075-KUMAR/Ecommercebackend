@@ -1,6 +1,6 @@
-const express = require("express");
-const { newOrder, myOrders, getSingleOrder, getAllOrders, updateOrder, deleteOrder } = require("../cantrollers/orderCantroller");
-const { isAuthenticatedUser, authorizeRoles } = require("../middleWare/Authentication");
+import express from "express";
+import { newOrder, myOrders, getSingleOrder, getAllOrders, updateOrder, deleteOrder } from "../cantrollers/orderCantroller.js";
+import { isAuthenticatedUser, authorizeRoles } from "../middleWare/Authentication.js";
 
 const router = express.Router();
 
@@ -24,4 +24,4 @@ router.delete("/admin/:id",isAuthenticatedUser,authorizeRoles("admin"),deleteOrd
 
 
 
-module.exports = router;
+export default router;

@@ -1,6 +1,6 @@
-const express = require("express");
-const { fetchAllProducts, createProduct, updateProduct, deleteProduct, detailProduct, createProductReview, getProductReviews, deleteReview, getAdminProducts } = require("../cantrollers/productCantroller");
-const { isAuthenticatedUser, authorizeRoles } = require("../middleWare/Authentication");
+import express from "express";
+import { fetchAllProducts, createProduct, updateProduct, deleteProduct, detailProduct, createProductReview, getProductReviews, deleteReview, getAdminProducts } from "../cantrollers/productCantroller.js";
+import { isAuthenticatedUser, authorizeRoles } from "../middleWare/Authentication.js"; 
 
 const router = express.Router();
 // Route 1: get all the products using: GET "/api/product/fetchallproducts". 
@@ -30,4 +30,4 @@ router.get("/reviews",getProductReviews);
 // Route 9:delete review for single product using: DELETE "/api/product/reviews". login requried
 router.delete("/reviews",isAuthenticatedUser,deleteReview);
 
-module.exports = router;
+export default router;

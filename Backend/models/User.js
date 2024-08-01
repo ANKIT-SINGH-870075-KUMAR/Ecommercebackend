@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const validator = require("validator");
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const crypto = require("crypto");
-const { Schema } = mongoose;
+import mongoose from 'mongoose';
+import validator from 'validator';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
    name: {
@@ -25,8 +25,7 @@ const UserSchema = new Schema({
       minLength: [8, 'Password Should be greater than 8 characters'],
       select: false
    },
-   avatar:
-   {
+   avatar: {
       public_id: {
          type: String,
          required: true
@@ -40,9 +39,9 @@ const UserSchema = new Schema({
       type: String,
       default: "user"
    },
-   createdAt:{
-    type:Date,
-    default:Date.now,
+   createdAt: {
+      type: Date,
+      default: Date.now,
    },
    resetPasswordToken: String,
    resetPasswordExpire: Date,
@@ -56,7 +55,6 @@ const UserSchema = new Schema({
 */
 
 UserSchema.pre("save", async function (next) {
-
    if (!this.isModified("password")) {
       next();
    }
@@ -86,12 +84,11 @@ UserSchema.methods.comparePassword = async function (password) {
 2. randombytes is a crypto method and generate (buffer value) then use tostring method and convert (buffer value) into (gargabes value) and use parameter(hex) inside toString method to convert (token)
 3. use (createhash methods)--->for creatinh hash with help of using parameter--->(sha256)--> Alogorthium and then use (update) methods ---> to update generating token(resettoken) and futher use (digest) method ---> then convert token    
 */
-UserSchema.methods.getResetPasswordToken = function(){
-    
+UserSchema.methods.getResetPasswordToken = function() {
    const resetToken = crypto.randomBytes(20).toString("hex");
    this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
-   this.resetPasswordExpire = Date.now() + 15*60*1000; 
+   this.resetPasswordExpire = Date.now() + 15 * 60 * 1000; 
    return resetToken;
 }
 
-module.exports =mongoose.model('user', UserSchema);
+export const User = mongoose.model('User', UserSchema);

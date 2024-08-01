@@ -1,11 +1,11 @@
-const cloudinary = require("cloudinary");
-const Product = require('../models/Product');
-const ApiFeatures = require('../Utils/apifeatures');
-const ErrorHandler = require('../Utils/errorHandler');
-const catchAsyncError = require('../middleWare/catchAsyncError');
+import cloudinary from "cloudinary";
+import Product from '../models/Product.js';
+import ApiFeatures from '../Utils/apifeatures.js';
+import ErrorHandler from '../Utils/errorHandler.js';
+import catchAsyncError from '../middleWare/catchAsyncError.js';
 
 //Create Product -- Admin
-exports.createProduct = catchAsyncError(async (req, res, next) => {
+export const createProduct = catchAsyncError(async (req, res, next) => {
 
     let images = [];
     if (typeof req.body.images === "string") {
@@ -39,7 +39,7 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 });
 
 // Get All Product 
-exports.fetchAllProducts = catchAsyncError(async (req, res, next) => {
+export const fetchAllProducts = catchAsyncError(async (req, res, next) => {
 
     /*
     1.resultperpage-> result in one page
@@ -55,7 +55,7 @@ exports.fetchAllProducts = catchAsyncError(async (req, res, next) => {
 });
 
 // Get All Product (Admin)
-exports.getAdminProducts = catchAsyncError(async (req, res, next) => {
+export const getAdminProducts = catchAsyncError(async (req, res, next) => {
     const products = await Product.find();
 
     res.status(200).json({
@@ -65,7 +65,7 @@ exports.getAdminProducts = catchAsyncError(async (req, res, next) => {
 });
 
 //update product-Admin
-exports.updateProduct = catchAsyncError(async (req, res, next) => {
+export const updateProduct = catchAsyncError(async (req, res, next) => {
 
     let product = await Product.findById(req.params.id);
     if (!product) {
@@ -113,7 +113,7 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
 });
 
 //delete product--Admin
-exports.deleteProduct = catchAsyncError(async (req, res, next) => {
+export const deleteProduct = catchAsyncError(async (req, res, next) => {
 
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -131,7 +131,7 @@ exports.deleteProduct = catchAsyncError(async (req, res, next) => {
 });
 
 //product details
-exports.detailProduct = catchAsyncError(async (req, res, next) => {
+export const detailProduct = catchAsyncError(async (req, res, next) => {
 
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -141,7 +141,7 @@ exports.detailProduct = catchAsyncError(async (req, res, next) => {
 });
 
 //create New Review or update the review
-exports.createProductReview = catchAsyncError(async (req, res, next) => {
+export const createProductReview = catchAsyncError(async (req, res, next) => {
 
     /*
     1. use destructing for ration ,comment , productid
@@ -186,7 +186,7 @@ exports.createProductReview = catchAsyncError(async (req, res, next) => {
 });
 
 //Get All Reviews of a single Product 
-exports.getProductReviews = catchAsyncError(async (req, res, next) => {
+export const getProductReviews = catchAsyncError(async (req, res, next) => {
 
     // use product id as a parmeter to get all review for a single product
     const product = await Product.findById(req.query.id);
@@ -197,7 +197,7 @@ exports.getProductReviews = catchAsyncError(async (req, res, next) => {
 });
 
 //Delete Review 
-exports.deleteReview = catchAsyncError(async (req, res, next) => {
+export const deleteReview = catchAsyncError(async (req, res, next) => {
 
     /*
     1. use product id and review id as a parameter to delete a review for a particular product 

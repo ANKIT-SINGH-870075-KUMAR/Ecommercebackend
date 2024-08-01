@@ -1,11 +1,11 @@
-const app = require("./app");
-const dotenv = require("dotenv");
-const connectToMongo = require("./config/database");
-const cloudinary = require('cloudinary');
+import app  from "./app.js";
+import dotenv  from "dotenv";
+import connectToMongo  from "./config/database.js";
+import cloudinary  from 'cloudinary';
 
 //handling Uncaught Exception 
 process.on("uncaughtException", (err) => {
-    console.log(`Error: ${err.message}`);
+    console.log(`Error: ${err.message}`); 
     console.log("Shutting down the server due to uncaught Exception");
     process.exit(1);
 })
