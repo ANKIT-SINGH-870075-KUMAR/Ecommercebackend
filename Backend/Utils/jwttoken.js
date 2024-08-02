@@ -11,7 +11,6 @@ const sendToken = (user, statuscode, res) => {
         ),
         secure: process.env.NODE_ENV === 'production', // Use secure cookies in production (HTTPS)
     sameSite: 'Strict',  // Helps prevent CSRF attacks
-    domain: '.render.com'
     };
 
     // Respond with status code, cookie, and JSON data
