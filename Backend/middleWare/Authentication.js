@@ -10,7 +10,7 @@ export const isAuthenticatedUser = catchAsyncError(async (req, res, next) => {
     3. check token is exist(true) or undefine(false)
     4. verify signature of admin in the token after login this process will be proceed and then user information give as a output
     */
-    const { token } = req.cookies;
+    const { token } = req.cookies; 
     if (!token) {
         return next(new ErrorHandler("Please Login to access this resource", 401));
     }
