@@ -9,7 +9,7 @@ const sendToken = (user, statuscode, res) => {
         expires: new Date(  // Cookie expiration date
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000  // Convert days to milliseconds
         ),
-        secure: true, // Use secure cookies in production (HTTPS)
+        // secure: true, // Use secure cookies in production (HTTPS)
         domain: '.onrender.com'  // Helps prevent CSRF attacks
     }; 
 
