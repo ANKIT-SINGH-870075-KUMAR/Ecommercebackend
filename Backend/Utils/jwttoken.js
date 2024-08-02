@@ -8,7 +8,9 @@ const sendToken = (user, statuscode, res) => {
         httpOnly: true,  // Ensures cookie is only accessible via web server
         expires: new Date(  // Cookie expiration date
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000  // Convert days to milliseconds
-        )
+        ),
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production (HTTPS)
+    sameSite: 'Strict'  // Helps prevent CSRF attacks
     };
 
     // Respond with status code, cookie, and JSON data
