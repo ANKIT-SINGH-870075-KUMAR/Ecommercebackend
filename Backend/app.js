@@ -19,8 +19,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(cors({
-    origin: 'https://darling-gumption-2d499a.netlify.app/',  // Replace with your frontend domain
-    credentials: true,  // Allow credentials to be sent
+    // origin: 'https://darling-gumption-2d499a.netlify.app/',  // Replace with your frontend domain
+    // credentials: true,  // Allow credentials to be sent
 }));
 
 
