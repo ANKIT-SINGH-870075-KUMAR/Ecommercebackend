@@ -13,9 +13,9 @@ export const isAuthenticatedUser = catchAsyncError(async (req, res, next) => {
     let { token } = req.cookies;
 
  // Fallback to local storage if cookies aren't enabled (less secure)
-   if (!token) {
-      token = localStorage.getItem('token');
-    }
+//    if (!token) {
+//       token = localStorage.getItem('token');
+//     }
 
     if (!token) {
         return next(new ErrorHandler("Please Login to access this resource", 401));

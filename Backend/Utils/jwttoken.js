@@ -23,7 +23,7 @@ const sendToken = (user, statuscode, res) => {
        });
 
     //    if (typeof window !== 'undefined') { // Check if running in a browser environment
-        localStorage.setItem('token', token);
+        // localStorage.setItem('token', token);
     //   }
 };
 
