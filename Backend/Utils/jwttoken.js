@@ -5,12 +5,12 @@ const sendToken = (user, statuscode, res) => {
 
     // Options for setting the cookie
     const options = {
-        // httpOnly: true,  // Ensures cookie is only accessible via web server
+        httpOnly: true,  // Ensures cookie is only accessible via web server
         expires: new Date(  // Cookie expiration date
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000  // Convert days to milliseconds
         ),
-        // secure: true, // Use secure cookies in production (HTTPS)
-        domain: '.onrender.com'  // Helps prevent CSRF attacks
+        secure: true, // Use secure cookies in production (HTTPS)
+        // domain: '.onrender.com'  // Helps prevent CSRF attacks
     }; 
 
     // Respond with status code, cookie, and JSON data

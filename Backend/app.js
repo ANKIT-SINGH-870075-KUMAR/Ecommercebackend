@@ -18,7 +18,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',  // Replace with your frontend domain
+    credentials: true,  // Allow credentials to be sent
+}));
 
 
 // Available Routes
