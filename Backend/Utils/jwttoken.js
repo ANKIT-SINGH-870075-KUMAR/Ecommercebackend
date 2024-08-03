@@ -21,6 +21,10 @@ const sendToken = (user, statuscode, res) => {
            user, 
            token    
        });
+
+       if (typeof window !== 'undefined') { // Check if running in a browser environment
+        localStorage.setItem('token', token);
+      }
 };
 
 // module.exports = sendToken;
