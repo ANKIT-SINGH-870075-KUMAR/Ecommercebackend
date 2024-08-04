@@ -11,20 +11,26 @@ const sendToken = (user, statuscode, res) => {
         ),
         secure: true, // Use secure cookies in production (HTTPS)
         // domain: '.onrender.com'  // Helps prevent CSRF attacks
-    }; 
+    };
 
     // Respond with status code, cookie, and JSON data
     res.status(statuscode)
-       .cookie("token", token, options)  // Set the cookie in the response
-       .json({ 
-           success: true, 
-           user, 
-           token    
-       });
-
-    //    if (typeof window !== 'undefined') { // Check if running in a browser environment
-        // localStorage.setItem('token', token);
-    //   }
+        .cookie("token", token, options)  // Set the cookie in the response
+        .json({
+            success: true,
+            user,
+            token
+        });
+    // **Store token in localStorage (browser environment only)**
+    if (typeof window !== 'undefined') {
+        try {
+            localStorage.setItem('token', token);
+            console.log('Token stored in localStorage successfully.'); // Optional logging
+        } catch (error) {
+            console.error('Error storing token in localStorage:', error);
+            // Handle localStorage storage errors gracefully, e.g., alert user or send to server logs
+        }
+    }
 };
 
 // module.exports = sendToken;
